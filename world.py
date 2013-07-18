@@ -21,7 +21,7 @@ class World:
 			monsterClass = modifier
 		monsterName = random.choice(World.MONSTER_NAMES)
 		self.enemy = Entity(World.MONSTER_CLASSES[monsterClass] + " " + monsterName, 
-			10 + healthScaling * modifier, 1 + attackScaling * modifier, 0 + defenseScaling * modifier)
+			10 + int(healthScaling * modifier), 1 + int(attackScaling * modifier), 0 + int(defenseScaling * modifier))
 
 	def setEnemy(self, enemy):
 		self.enemy = enemy

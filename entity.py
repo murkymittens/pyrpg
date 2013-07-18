@@ -9,19 +9,19 @@ class Entity:
 		return int(self.health) > 0
 
 	def setHealth(self, health):
-		self.health = health
+		self.health = int(health)
 
 	def getHealth(self):
 		return self.health
 
 	def setAttack(self, attack):
-		self.attack = attack
+		self.attack = int(attack)
 
 	def getAttack(self):
 		return self.attack
 
 	def setDefense(self, defense):
-		self.defense = defense
+		self.defense = int(defense)
 
 	def getDefense(self):
 		return self.defense

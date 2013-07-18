@@ -9,11 +9,13 @@ def chanceRoll(probability):
 
 def attack(attacker, defender):
 	if chanceRoll(75):
-		attack_value = attacker.attack
+		attack_value = attacker.getAttack()
 		if chanceRoll(50):
-			attack_value -= defender.defense
-		defender.health -= attack_value
-		print "%s hits %s for %d. %s's health is now %d." % (attacker.name, defender.name, attack_value, defender.name, defender.health)
+			attack_value -= defender.getDefense()
+			if attack_value < 0:
+				attack_value = 0
+		defender.setHealth(defender.getHealth() - attack_value)
+		print "%s hits %s for %d. %s's health is now %d." % (attacker.name, defender.name, attack_value, defender.name, defender.getHealth())
 	else:
 		print "%s misses." % (attacker.name)
 
@@ -28,8 +30,10 @@ while player.isAlive():
 			world.setStepsTaken(world.getStepsTaken() + 1)
 			if chanceRoll(10):
 				world.generateMonster()
+				enemy = world.getEnemy()
 				player.setState(Player.STATE_BATTLE)
 				print "You've encountered a %s. Prepare to fight." % (world.getEnemy().name)
+				# print "%s starts with %d HP and %s starts with %d HP." % (player.name, player.getHealth(), enemy.name, enemy.getHealth())
 			else:
 				player.setHealth(player.getHealth() + 1)
 				print "You've recovered 1 HP. Your HP is now %d." % (player.getHealth())
@@ -48,7 +52,7 @@ while player.isAlive():
 				player.setExperience(player.getExperience() + player.getHealth())
 				if(player.getExperience() >= Player.EXPERIENCE_TARGET):
 					player.levelUp()
-					print "%s has leveled up!"
+					print "%s has leveled up!" % (player.name)
 		else:
 			print "You can't do that right now."
 	elif command == "exit" or command == "x":

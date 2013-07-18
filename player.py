@@ -17,12 +17,12 @@ class Player(Entity):
 		return self.state
 
 	def setExperience(self, experience):
-		self.experience = experience
+		self.experience = int(experience)
 
 	def getExperience(self):
 		return self.experience
 
-	def levelUp():
+	def levelUp(self):
 		levels = self.experience / Player.EXPERIENCE_TARGET
 		remaining_experience = self.experience - levels * Player.EXPERIENCE_TARGET
 		healthScaling = 12
