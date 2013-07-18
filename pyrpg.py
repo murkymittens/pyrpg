@@ -43,6 +43,8 @@ while player.isAlive():
 				print "You found a health potion! You now have %d health potions." % (player.getHealthPotions())
 			elif chanceRoll(5):
 				player.setHealth(player.getHealth() * 0.25)
+				if player.getHealth() < 1:
+					player.setHealth(1)
 				print "You were careless and fell into a hole. Your HP is now %d." % (player.getHealth())
 			else:
 				if player.getHealth() < player.getMaximumHealth():
