@@ -64,6 +64,10 @@ while player.isAlive():
 			elif chanceRoll(20):
 				player.setHealthPotions(player.getHealthPotions() + 1)
 				print "You found a health potion! You now have %d health potions." % (player.getHealthPotions())
+			elif chanceRoll(10):
+				experienceGain = randint(5, 50)
+				player.setExperience(player.getExperience() + experienceGain)
+				print "%s got %d EXP." % (player.name, experienceGain)
 			elif chanceRoll(5):
 				player.setHealth(player.getHealth() * 0.25)
 				if player.getHealth() < 1:
@@ -86,9 +90,6 @@ while player.isAlive():
 				player.setHealth(player.getHealth() + 10)
 				player.setExperience(player.getExperience() + enemy.getExperience())
 				print "%s got %d EXP." % (player.name, enemy.getExperience())
-				if(player.getExperience() >= Player.EXPERIENCE_TARGET):
-					player.levelUp()
-					print "%s has leveled up!" % (player.name)
 				sayHp(player)
 		else:
 			print "You can't do that right now."
@@ -107,6 +108,11 @@ while player.isAlive():
 	else:
 		print "I don't understand you."
 		skipInput = False
+
+	if(player.getExperience() >= Player.EXPERIENCE_TARGET):
+		player.levelUp()
+		print "%s has leveled up!" % (player.name)
+		sayHp(player)
 
 	lastCommand = command
 	if not skipInput:
