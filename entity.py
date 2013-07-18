@@ -6,7 +6,7 @@ class Entity:
 		self.defense = defense
 
 	def isAlive(self):
-		return self.health > 0
+		return int(self.health) > 0
 
 	def setHealth(self, health):
 		self.health = health
