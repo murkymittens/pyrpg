@@ -11,9 +11,9 @@ class World:
 		self.enemy = None
 
 	def generateMonster(self):
-		healthScaling = 0.75
-		attackScaling = 0.25
-		defenseScaling = 0.25
+		healthScaling = 10
+		attackScaling = 2
+		defenseScaling = 1
 		modifier = self.stepsTaken / 10
 		if modifier >= len(World.MONSTER_CLASSES):
 			monsterClass = len(World.MONSTER_CLASSES) - 1
