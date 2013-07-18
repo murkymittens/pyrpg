@@ -67,7 +67,7 @@ while player.isAlive():
 			elif chanceRoll(10):
 				experienceGain = randint(5, 50)
 				player.setExperience(player.getExperience() + experienceGain)
-				print "%s got %d EXP." % (player.name, experienceGain)
+				print "%s found an ancient artifact. Got %d EXP." % (player.name, experienceGain)
 			elif chanceRoll(5):
 				player.setHealth(player.getHealth() * 0.25)
 				if player.getHealth() < 1:
@@ -91,6 +91,7 @@ while player.isAlive():
 				player.setExperience(player.getExperience() + enemy.getExperience())
 				print "%s got %d EXP." % (player.name, enemy.getExperience())
 				sayHp(player)
+				enemy = None
 		else:
 			print "You can't do that right now."
 		skipInput = False
