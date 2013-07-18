@@ -2,6 +2,7 @@ from entity import Entity
 from player import Player
 from world import World
 from random import randint
+from time import sleep
 
 def chanceRoll(probability):
 	chance_roll = randint(1, 100)
@@ -105,5 +106,6 @@ while player.isAlive():
 	lastCommand = command
 	if not skipInput:
 		print ''
+	sleep(0.5)
 
 print "You have died. Your princess is in a different castle. Your life sucks...or it would, if you had one!"
