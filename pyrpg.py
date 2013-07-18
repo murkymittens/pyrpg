@@ -49,8 +49,9 @@ while player.isAlive():
 				world.setEnemy(None)
 				player.setState(Player.STATE_EXPLORING)
 				print "%s has vanquished the %s. Prepare your anus for the spoils of victory!" % (player.name, enemy.name)
-				player.setExperience(player.getExperience() + player.getHealth())
 				player.setHealth(player.getHealth() + 10)
+				player.setExperience(player.getExperience() + enemy.getExperience())
+				print "%s got %d EXP." % (player.name, enemy.getExperience())
 				print "%s's HP is now %d." % (player.name, player.getHealth())
 				if(player.getExperience() >= Player.EXPERIENCE_TARGET):
 					player.levelUp()

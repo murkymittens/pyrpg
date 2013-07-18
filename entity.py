@@ -4,6 +4,7 @@ class Entity:
 		self.health = health
 		self.attack = attack
 		self.defense = defense
+		self.experience = 0
 
 	def isAlive(self):
 		return int(self.health) > 0
@@ -25,3 +26,9 @@ class Entity:
 
 	def getDefense(self):
 		return self.defense
+
+	def setExperience(self, experience):
+		self.experience = int(experience)
+
+	def getExperience(self):
+		return self.experience
