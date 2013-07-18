@@ -34,7 +34,7 @@ while player.isAlive():
 				player.setState(Player.STATE_BATTLE)
 				print "You've encountered a %s. Prepare to fight." % (world.getEnemy().name)
 			elif chanceRoll(20):
-				player.setHealthPotions(player.getHealthPotions + 1)
+				player.setHealthPotions(player.getHealthPotions() + 1)
 				print "You found a health potion! You now have %d health potions." % (player.getHealthPotions())
 			else:
 				player.setHealth(player.getHealth() + 1)
