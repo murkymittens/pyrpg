@@ -41,6 +41,13 @@ while player.isAlive():
 	if command == "explore" or command == "e":
 		if player.getState() == Player.STATE_EXPLORING:
 			world.setStepsTaken(world.getStepsTaken() + 1)
+			if player.getHealth() < player.getMaximumHealth():
+					player.setHealth(player.getHealth() + 1)
+					print "You've recovered 1 HP."
+					sayHp(player)
+				player.setExperience(player.getExperience() + 1)
+				print "You've received 1 EXP."
+
 			if chanceRoll(10):
 				world.generateMonster()
 				enemy = world.getEnemy()
@@ -57,14 +64,6 @@ while player.isAlive():
 					player.setHealth(1)
 				print "You were careless and fell into a hole."
 				sayHp(player)
-				#skipInput = False
-			else:
-				if player.getHealth() < player.getMaximumHealth():
-					player.setHealth(player.getHealth() + 1)
-					print "You've recovered 1 HP."
-					sayHp(player)
-				player.setExperience(player.getExperience() + 1)
-				print "You've received 1 EXP."
 		else:
 			print "You can't do that right now."
 	elif command == "attack" or command == "a":
