@@ -42,11 +42,11 @@ while player.isAlive():
 		if player.getState() == Player.STATE_EXPLORING:
 			world.setStepsTaken(world.getStepsTaken() + 1)
 			if player.getHealth() < player.getMaximumHealth():
-					player.setHealth(player.getHealth() + 1)
-					print "You've recovered 1 HP."
-					sayHp(player)
-				player.setExperience(player.getExperience() + 1)
-				print "You've received 1 EXP."
+				player.setHealth(player.getHealth() + 1)
+				print "You've recovered 1 HP."
+				sayHp(player)
+			player.setExperience(player.getExperience() + 1)
+			print "You've received 1 EXP."
 
 			if chanceRoll(10):
 				world.generateMonster()
