@@ -22,9 +22,14 @@ def attack(attacker, defender):
 name = raw_input("What is your name? ")
 player = Player(name)
 world = World(player)
+lastCommand = None
 
 while player.isAlive():
 	command = raw_input("What do you want to do? ")
+
+	if len(command) == 0 and lastCommand != None:
+		command = lastCommand
+
 	if command == "explore" or command == "e":
 		if player.getState() == Player.STATE_EXPLORING:
 			world.setStepsTaken(world.getStepsTaken() + 1)
@@ -77,6 +82,8 @@ while player.isAlive():
 		break
 	else:
 		print "I don't understand you."
+
+	lastCommand = command
 	print ''
 
 print "You have died. Your princess is in a different castle. Your life sucks...or it would, if you had one!"
