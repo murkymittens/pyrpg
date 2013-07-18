@@ -63,7 +63,6 @@ while player.isAlive():
 					player.setHealth(player.getHealth() + 1)
 					print "You've recovered 1 HP."
 					sayHp(player)
-					skipInput = False
 				player.setExperience(player.getExperience() + 1)
 				print "You've received 1 EXP."
 		else:
