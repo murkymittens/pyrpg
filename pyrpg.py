@@ -33,7 +33,9 @@ while player.isAlive():
 				enemy = world.getEnemy()
 				player.setState(Player.STATE_BATTLE)
 				print "You've encountered a %s. Prepare to fight." % (world.getEnemy().name)
-				# print "%s starts with %d HP and %s starts with %d HP." % (player.name, player.getHealth(), enemy.name, enemy.getHealth())
+			elif chanceRoll(20):
+				player.setHealthPotions(player.getHealthPotions + 1)
+				print "You found a health potion! You now have %d health potions." % (player.getHealthPotions())
 			else:
 				player.setHealth(player.getHealth() + 1)
 				print "You've recovered 1 HP. Your HP is now %d." % (player.getHealth())
@@ -58,6 +60,13 @@ while player.isAlive():
 					print "%s has leveled up!" % (player.name)
 		else:
 			print "You can't do that right now."
+	elif command == "health" or command == "h":
+		if player.getHealthPotions() > 0:
+			player.setHealth(player.getHealth() + 10)
+			player.setHealthPotions(player.getHealthPotions() - 1)
+			print "You've been healed for 10 HP. Your HP is now %d. You have %d health potions left." % (player.getHealth(), player.getHealthPotions())
+		else:
+			print "You don't have any more health potions."
 	elif command == "exit" or command == "x":
 		break
 	else:

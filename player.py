@@ -8,6 +8,7 @@ class Player(Entity):
 	def __init__(self, name, health = 10, attack = 1, defense = 0):
 		Entity.__init__(self, name, health, attack, defense)
 		self.state = Player.STATE_EXPLORING
+		self.healthPotions = 1
 
 	def setState(self, state):
 		self.state = state
@@ -25,3 +26,9 @@ class Player(Entity):
 		self.attack = self.attack + levels * attackScaling
 		self.defense = self.defense + levels * defenseScaling
 		self.experience = remaining_experience
+
+	def setHealthPotions(self, healthPotions):
+		self.healthPotions = healthPotions
+
+	def getHealthPotions(self):
+		return self.healthPotions
