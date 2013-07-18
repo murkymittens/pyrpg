@@ -38,7 +38,9 @@ while player.isAlive():
 				print "You found a health potion! You now have %d health potions." % (player.getHealthPotions())
 			else:
 				player.setHealth(player.getHealth() + 1)
+				player.setExperience(player.getExperience() + 1)
 				print "You've recovered 1 HP. Your HP is now %d." % (player.getHealth())
+				print "You've received 1 EXP."
 		else:
 			print "You can't do that right now."
 	elif command == "attack" or command == "a":

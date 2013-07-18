@@ -12,15 +12,15 @@ class World:
 
 	def generateMonster(self):
 		healthScaling = 10
-		attackScaling = 2
-		defenseScaling = 1
+		attackScaling = 1
+		defenseScaling = 0.5
 		modifier = self.stepsTaken / 50
 		if modifier >= len(World.MONSTER_CLASSES):
-			monsterClass = len(World.MONSTER_CLASSES) - 1
+			monsterClass = World.MONSTER_CLASSES[len(World.MONSTER_CLASSES) - 1]
 		else:
-			monsterClass = modifier
+			monsterClass = World.MONSTER_CLASSES[modifier]
 		monsterName = random.choice(World.MONSTER_NAMES)
-		self.enemy = Entity(World.MONSTER_CLASSES[monsterClass] + " " + monsterName, 
+		self.enemy = Entity(monsterClass + " " + monsterName, 
 			10 + int(healthScaling * modifier), 1 + int(attackScaling * modifier), 0 + int(defenseScaling * modifier))
 		self.enemy.setExperience(self.enemy.getHealth())
 

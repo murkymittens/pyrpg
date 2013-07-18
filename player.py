@@ -19,9 +19,9 @@ class Player(Entity):
 	def levelUp(self):
 		levels = self.experience / Player.EXPERIENCE_TARGET
 		remaining_experience = self.experience - levels * Player.EXPERIENCE_TARGET
-		healthScaling = 12
-		attackScaling = 2
-		defenseScaling = 1
+		healthScaling = 10
+		attackScaling = 1
+		defenseScaling = 0.5
 		self.health = self.health + levels * healthScaling
 		self.attack = self.attack + levels * attackScaling
 		self.defense = self.defense + levels * defenseScaling
