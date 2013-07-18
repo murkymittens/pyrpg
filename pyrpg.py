@@ -121,6 +121,7 @@ while player.isAlive():
 	sleep(0.5)
 
 print "You have died. Your princess is in a different castle. Your life sucks...or it would, if you had one!"
-print "%s was level %d with %d health potions." % (player.name, player.getLevel(), player.getHealthPotions())
+print "%s was level %d with %d health potions and %d/%d EXP." % (player.name, player.getLevel(), player.getHealthPotions(),
+	player.getExperience(), Player.EXPERIENCE_TARGET)
 if enemy != None:
 	print "%s was killed by %s." % (player.name, enemy.name)
