@@ -2,6 +2,7 @@ class Entity:
 	def __init__(self, name = "Generic Entity", health = 10, attack = 1, defense = 0):
 		self.name = name
 		self.health = health
+		self.maximumHealth = health
 		self.attack = attack
 		self.defense = defense
 		self.experience = 0
@@ -11,9 +12,19 @@ class Entity:
 
 	def setHealth(self, health):
 		self.health = int(health)
+		if self.health > self.maximumHealth:
+			self.health = self.maximumHealth
+		elif self.health < 0:
+			self.health = 0
 
 	def getHealth(self):
 		return self.health
+
+	def setMaximumHealth(self, health):
+		self.maximumHealth = health
+
+	def getMaximumHealth(self):
+		return self.maximumHealth
 
 	def setAttack(self, attack):
 		self.attack = int(attack)

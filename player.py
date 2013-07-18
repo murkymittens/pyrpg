@@ -22,10 +22,12 @@ class Player(Entity):
 		healthScaling = 10
 		attackScaling = 1
 		defenseScaling = 0.5
-		self.health = self.health + levels * healthScaling
-		self.attack = self.attack + levels * attackScaling
-		self.defense = self.defense + levels * defenseScaling
+		self.maximumHealth = self.maximumHealth + int(levels * healthScaling)
+		self.health = self.maximumHealth
+		self.attack = self.attack + int(levels * attackScaling)
+		self.defense = self.defense + int(levels * defenseScaling)
 		self.experience = remaining_experience
+		Player.EXPERIENCE_TARGET = int(Player.EXPERIENCE_TARGET * 1.25)
 
 	def setHealthPotions(self, healthPotions):
 		self.healthPotions = healthPotions
