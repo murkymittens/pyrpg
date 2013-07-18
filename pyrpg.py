@@ -27,9 +27,12 @@ name = raw_input("What is your name? ")
 player = Player(name)
 world = World(player)
 lastCommand = None
+skipInput = False
 
 while player.isAlive():
-	command = raw_input("What do you want to do? ")
+	if not skipInput:
+		command = raw_input("What do you want to do? ")
+		skipInput = True
 
 	if len(command) == 0 and lastCommand != None:
 		command = lastCommand
@@ -42,15 +45,18 @@ while player.isAlive():
 				enemy = world.getEnemy()
 				player.setState(Player.STATE_BATTLE)
 				print "You've encountered a %s. Prepare to fight." % (world.getEnemy().name)
+				skipInput = False
 			elif chanceRoll(20):
 				player.setHealthPotions(player.getHealthPotions() + 1)
 				print "You found a health potion! You now have %d health potions." % (player.getHealthPotions())
+				skipInput = False
 			elif chanceRoll(5):
 				player.setHealth(player.getHealth() * 0.25)
 				if player.getHealth() < 1:
 					player.setHealth(1)
 				print "You were careless and fell into a hole."
 				sayHp(player)
+				skipInput = False
 			else:
 				if player.getHealth() < player.getMaximumHealth():
 					player.setHealth(player.getHealth() + 1)
@@ -79,6 +85,7 @@ while player.isAlive():
 				sayHp(player)
 		else:
 			print "You can't do that right now."
+		skipInput = False
 	elif command == "health" or command == "h":
 		if player.getHealthPotions() > 0:
 			player.setHealth(player.getHealth() + 10)
@@ -87,12 +94,15 @@ while player.isAlive():
 			sayHp(player)
 		else:
 			print "You don't have any more health potions."
+		skipInput = False
 	elif command == "exit" or command == "x":
 		break
 	else:
 		print "I don't understand you."
+		skipInput = False
 
 	lastCommand = command
-	print ''
+	if not skipInput:
+		print ''
 
 print "You have died. Your princess is in a different castle. Your life sucks...or it would, if you had one!"
