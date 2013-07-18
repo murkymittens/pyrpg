@@ -30,6 +30,13 @@ world = World(player)
 lastCommand = None
 skipInput = False
 
+print ''
+print "Welcome to the most evil dungeon you will ever face %s!" % (player.name)
+print "Please use 'e' to explore, 'a' to attack, and 'h' to heal."
+print "Should you find this dungeon too...hard, feel free to 'x' to commit suicide and end your eternal damnation on earth \
+and begin your eternal damnation in hell. *cackle*"
+print ''
+
 while player.isAlive():
 	if not skipInput:
 		command = raw_input("What do you want to do? ")
