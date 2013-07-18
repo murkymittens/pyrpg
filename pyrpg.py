@@ -57,7 +57,6 @@ while player.isAlive():
 			elif chanceRoll(20):
 				player.setHealthPotions(player.getHealthPotions() + 1)
 				print "You found a health potion! You now have %d health potions." % (player.getHealthPotions())
-				#skipInput = False
 			elif chanceRoll(5):
 				player.setHealth(player.getHealth() * 0.25)
 				if player.getHealth() < 1:
@@ -66,6 +65,7 @@ while player.isAlive():
 				sayHp(player)
 		else:
 			print "You can't do that right now."
+			skipInput = False
 	elif command == "attack" or command == "a":
 		if player.getState() == Player.STATE_BATTLE:
 			enemy = world.getEnemy()
