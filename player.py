@@ -31,3 +31,4 @@ class Player(Entity):
 		self.health = self.health + levels * healthScaling
 		self.attack = self.attack + levels * attackScaling
 		self.defense = self.defense + levels * defenseScaling
+		self.experience = remaining_experience
