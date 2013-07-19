@@ -89,7 +89,7 @@ while player.isAlive():
 					player.setHealth(1)
 				print "You were careless and fell into a hole."
 				sayHp(player)
-			elif chanceRoll(10):
+			elif chanceRoll(5):
 				somethingStolen = False
 				if player.getGold() > 0:
 					somethingStolen = True

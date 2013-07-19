@@ -12,20 +12,36 @@ class World:
 		self.enemy = None
 
 	def generateMonster(self):
+		bossRoll = randint(1, 100)
+		if bossRoll <= 10:
+			boss = True
+		else:
+			boss = False
+
 		healthScaling = 10
 		attackScaling = 1
 		defenseScaling = 0.5
 		goldScaling = 2
 		modifier = self.stepsTaken / 50
-		if modifier >= len(World.MONSTER_CLASSES):
-			monsterClass = World.MONSTER_CLASSES[len(World.MONSTER_CLASSES) - 1]
+		if boss:
+			monsterClass = "Boss"
 		else:
-			monsterClass = World.MONSTER_CLASSES[modifier]
+			if modifier >= len(World.MONSTER_CLASSES):
+				monsterClass = World.MONSTER_CLASSES[len(World.MONSTER_CLASSES) - 1]
+			else:
+				monsterClass = World.MONSTER_CLASSES[modifier]
+
 		monsterName = random.choice(World.MONSTER_NAMES)
 		self.enemy = Entity(monsterClass + " " + monsterName, 
 			10 + int(healthScaling * modifier), 1 + int(attackScaling * modifier), 0 + int(defenseScaling * modifier))
 		self.enemy.setExperience(self.enemy.getHealth())
 		self.enemy.setGold(1 + int(goldScaling * modifier))
+		if boss:
+			self.enemy.setMaximumHealth(self.enemy.getMaximumHealth() * 10)
+			self.enemy.setAttack(self.enemy.getAttack() * 5)
+			self.enemy.setDefense(self.enemy.getDefense() * 2)
+			self.enemy.setGold(self.enemy.getGold() * 10)
+			self.enemy.setExperience(self.enemy.getExperience() * 10)
 
 	def setEnemy(self, enemy):
 		self.enemy = enemy
