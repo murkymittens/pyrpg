@@ -32,7 +32,7 @@ skipInput = False
 
 print ''
 print "Welcome to the most evil dungeon you will ever face %s!" % (player.name)
-print "Please use 'e' to explore, 'a' to attack, and 'h' to heal."
+print "Please use 'e' to explore, 'a' to attack, 'b' to buy potions, and 'h' to heal."
 print "Should you find this dungeon too...hard, feel free to 'x' to commit suicide and end your eternal damnation on earth \
 and begin your eternal damnation in hell. *cackle*"
 print ''
@@ -46,6 +46,9 @@ while player.isAlive():
 		command = lastCommand
 
 	if command == "explore" or command == "e":
+		if player.getState() == Player.STATE_SHOPPING:
+			player.setState(Player.STATE_EXPLORING)
+
 		if player.getState() == Player.STATE_EXPLORING:
 			world.setStepsTaken(world.getStepsTaken() + 1)
 			if player.getHealth() < player.getMaximumHealth():
@@ -68,6 +71,10 @@ while player.isAlive():
 				experienceGain = randint(5, 50)
 				player.setExperience(player.getExperience() + experienceGain)
 				print "%s found an ancient artifact. Got %d EXP." % (player.name, experienceGain)
+			elif chanceRoll(10):
+				player.setState(Player.STATE_SHOPPING)
+				print "%s stumbled into a rickety shack. There appear to be items for sale. You have %d gold." % (player.name, player.getGold())
+				skipInput = False
 			elif chanceRoll(5):
 				player.setHealth(player.getHealth() * 0.25)
 				if player.getHealth() < 1:
@@ -89,7 +96,8 @@ while player.isAlive():
 				print "%s has vanquished the %s. Prepare your anus for the spoils of victory!" % (player.name, enemy.name)
 				player.setHealth(player.getHealth() + 10)
 				player.setExperience(player.getExperience() + enemy.getExperience())
-				print "%s got %d EXP." % (player.name, enemy.getExperience())
+				player.setGold(enemy.getGold())
+				print "%s got %d EXP and %d gold." % (player.name, enemy.getExperience(), enemy.getGold())
 				sayHp(player)
 				enemy = None
 		else:
@@ -103,6 +111,20 @@ while player.isAlive():
 			sayHp(player)
 		else:
 			print "You don't have any more health potions."
+		skipInput = False
+
+	elif command == "buy" or command == "b":
+		if player.getState() == Player.STATE_SHOPPING:
+			healthPotionCost = 5
+			if player.getGold() > healthPotionCost:
+				player.setGold(player.getGold() - healthPotionCost)
+				player.setHealthPotions(player.getHealthPotions() + 1)
+				print "%s bought a health potion for %d gold. You now have %d health potions. You have %d gold." % (player.name, healthPotionCost, 
+					player.getHealthPotions(), player.getGold())
+			else:
+				print "You don't have enough gold. You need %d." % (healthPotionCost)
+		else:
+			print "You can't shop right now."
 		skipInput = False
 	elif command == "exit" or command == "x":
 		break
@@ -121,7 +143,7 @@ while player.isAlive():
 	sleep(0.5)
 
 print "You have died. Your princess is in a different castle. Your life sucks...or it would, if you had one!"
-print "%s was level %d with %d health potions and %d/%d EXP." % (player.name, player.getLevel(), player.getHealthPotions(),
-	player.getExperience(), Player.EXPERIENCE_TARGET)
+print "%s was level %d with %d health potions, %d/%d EXP, and %d gold." % (player.name, player.getLevel(), player.getHealthPotions(),
+	player.getExperience(), Player.EXPERIENCE_TARGET, player.getGold())
 if enemy != None:
 	print "%s was killed by %s." % (player.name, enemy.name)

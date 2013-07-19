@@ -3,6 +3,8 @@ from entity import Entity
 class Player(Entity):
 	STATE_EXPLORING = 0
 	STATE_BATTLE = 1
+	STATE_SHOPPING = 2
+	
 	EXPERIENCE_TARGET = 100
 
 	def __init__(self, name, health = 10, attack = 1, defense = 0):

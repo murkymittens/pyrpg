@@ -1,4 +1,5 @@
 from entity import Entity
+from random import randint
 import random
 
 class World:
@@ -14,6 +15,7 @@ class World:
 		healthScaling = 10
 		attackScaling = 1
 		defenseScaling = 0.5
+		goldScaling = 2
 		modifier = self.stepsTaken / 50
 		if modifier >= len(World.MONSTER_CLASSES):
 			monsterClass = World.MONSTER_CLASSES[len(World.MONSTER_CLASSES) - 1]
@@ -23,6 +25,7 @@ class World:
 		self.enemy = Entity(monsterClass + " " + monsterName, 
 			10 + int(healthScaling * modifier), 1 + int(attackScaling * modifier), 0 + int(defenseScaling * modifier))
 		self.enemy.setExperience(self.enemy.getHealth())
+		self.enemy.setGold(1 + int(goldScaling * modifier))
 
 	def setEnemy(self, enemy):
 		self.enemy = enemy
