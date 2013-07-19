@@ -22,7 +22,7 @@ class Entity:
 		return self.health
 
 	def setMaximumHealth(self, health):
-		self.maximumHealth = health
+		self.maximumHealth = int(health)
 
 	def getMaximumHealth(self):
 		return self.maximumHealth
