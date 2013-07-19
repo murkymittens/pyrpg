@@ -128,7 +128,7 @@ while player.isAlive():
 				print "%s bought a health potion for %d gold. You now have %d health potions. You have %d gold." % (player.name, healthPotionCost, 
 					player.getHealthPotions(), player.getGold())
 			else:
-				print "You don't have enough gold. You need %d." % (healthPotionCost)
+				print "The frail-looking shopkeeper banishes you from the premises with unusual vigor, shouting \"My potions cost %d gold! Begone!\"." % (healthPotionCost)
 		else:
 			print "You can't shop right now."
 		skipInput = False
