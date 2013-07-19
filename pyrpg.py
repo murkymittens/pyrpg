@@ -99,7 +99,7 @@ while player.isAlive():
 				
 				if player.getHealthPotions() > 0:
 					somethingStolen = True
-					player.setHealthPotions(player.getHealthPotions() * 0.25)
+					player.setHealthPotions(player.getHealthPotions() * 0.75)
 
 				if somethingStolen:
 					print ("%s's pockets feel lighter. You feel around. You have %d gold and %d health potions. Something's definitely missing..." % 
