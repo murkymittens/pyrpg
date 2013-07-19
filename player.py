@@ -34,7 +34,7 @@ class Player(Entity):
 		self.level = self.level + 1
 
 	def setHealthPotions(self, healthPotions):
-		self.healthPotions = healthPotions
+		self.healthPotions = int(healthPotions)
 		if self.healthPotions < 0:
 			self.healthPotions = 0
 

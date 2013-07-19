@@ -46,7 +46,7 @@ class Entity:
 		return self.experience
 
 	def setGold(self, gold):
-		self.gold = gold
+		self.gold = int(gold)
 		if self.gold < 0:
 			self.gold = 0
 
