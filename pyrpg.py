@@ -27,6 +27,9 @@ def attack(attacker, defender):
 	else:
 		print "%s misses." % (attacker.name)
 
+def printCommands():
+	print "Please use 'e' to explore, 'a' to attack, 'b' to buy potions, 'sb' to activate your shield bubble, 'h' to heal, or 'x' to commit suicide."
+
 name = raw_input("What is your name? ")
 player = Player(name)
 world = World(player)
@@ -179,6 +182,10 @@ while player.isAlive():
 
 	elif command == "exit" or command == "x":
 		break
+
+	elif command == "?":
+		printCommands()
+
 	else:
 		print "I don't understand you."
 		skipInput = False
