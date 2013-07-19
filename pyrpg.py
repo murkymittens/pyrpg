@@ -39,7 +39,9 @@ print ''
 
 while player.isAlive():
 	if not skipInput:
-		command = raw_input("What do you want to do? ")
+		rawCommand = raw_input("What do you want to do? ")
+		splitCommand = rawCommand.split(' ', 1)
+		command = splitCommand[0]
 		skipInput = True
 
 	if len(command) == 0 and lastCommand != None:
@@ -122,10 +124,16 @@ while player.isAlive():
 	elif command == "buy" or command == "b":
 		if player.getState() == Player.STATE_SHOPPING:
 			healthPotionCost = 5
-			if player.getGold() >= healthPotionCost:
-				player.setGold(player.getGold() - healthPotionCost)
-				player.setHealthPotions(player.getHealthPotions() + 1)
-				print "%s bought a health potion for %d gold. You now have %d health potions. You have %d gold." % (player.name, healthPotionCost, 
+			if len(splitCommand) > 1:
+				quantity = int(splitCommand[1])
+			else:
+				quantity = 1
+
+			purchaseCost = healthPotionCost * quantity
+			if player.getGold() >= purchaseCost:
+				player.setGold(player.getGold() - purchaseCost)
+				player.setHealthPotions(player.getHealthPotions() + quantity)
+				print "%s bought (%d) health potion for %d gold. You now have %d health potions. You have %d gold." % (player.name, quantity, purchaseCost, 
 					player.getHealthPotions(), player.getGold())
 			else:
 				print "The frail-looking shopkeeper banishes you from the premises with unusual vigor, shouting \"My potions cost %d gold! Begone!\"." % (healthPotionCost)
