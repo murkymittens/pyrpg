@@ -31,6 +31,7 @@ player = Player(name)
 world = World(player)
 lastCommand = None
 skipInput = False
+enemy = None
 
 print ''
 print "Welcome to the most evil dungeon you will ever face %s!" % (player.name)
