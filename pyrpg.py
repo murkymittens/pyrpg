@@ -123,7 +123,7 @@ while player.isAlive():
 				print "%s got %d EXP and %d gold." % (player.name, enemy.getExperience(), enemy.getGold())
 				sayHp(player)
 				enemy = None
-				player.shieldBubble.reset()
+				#player.shieldBubble.reset()
 			player.shieldBubble.update()
 
 		else:
