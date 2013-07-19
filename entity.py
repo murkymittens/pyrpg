@@ -47,6 +47,8 @@ class Entity:
 
 	def setGold(self, gold):
 		self.gold = gold
+		if self.gold < 0:
+			self.gold = 0
 
 	def getGold(self):
 		return self.gold
