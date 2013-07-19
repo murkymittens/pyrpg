@@ -38,6 +38,7 @@ class World:
 		self.enemy.setGold(1 + int(goldScaling * modifier))
 		if boss:
 			self.enemy.setMaximumHealth(self.enemy.getMaximumHealth() * 10)
+			self.enemy.setHealth(self.enemy.getMaximumHealth())
 			self.enemy.setAttack(self.enemy.getAttack() * 5)
 			self.enemy.setDefense(self.enemy.getDefense() * 2)
 			self.enemy.setGold(self.enemy.getGold() * 10)
