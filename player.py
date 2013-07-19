@@ -35,6 +35,8 @@ class Player(Entity):
 
 	def setHealthPotions(self, healthPotions):
 		self.healthPotions = healthPotions
+		if self.healthPotions < 0:
+			self.healthPotions = 0
 
 	def getHealthPotions(self):
 		return self.healthPotions
