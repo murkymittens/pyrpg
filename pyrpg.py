@@ -2,6 +2,7 @@ from player import Player
 from world import World
 from random import randint
 from time import sleep
+from util import ChanceBasedEvent
 
 def chanceRoll(probability):
 	chance_roll = randint(1, 100)
@@ -32,6 +33,7 @@ world = World(player)
 lastCommand = None
 skipInput = False
 enemy = None
+chance = ChanceBasedEvent()
 
 print ''
 print "Welcome to the most evil dungeon you will ever face %s!" % (player.name)
@@ -145,7 +147,10 @@ while player.isAlive():
 		if player.getState() == Player.STATE_SHOPPING:
 			healthPotionCost = 5
 			if len(splitCommand) > 1:
-				quantity = int(splitCommand[1])
+				try:
+					quantity = int(splitCommand[1])
+				except (TypeError, ValueError):
+					quantity = 1
 			else:
 				quantity = 1
 
