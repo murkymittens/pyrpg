@@ -124,6 +124,7 @@ while player.isAlive():
 				sayHp(player)
 				enemy = None
 				#player.shieldBubble.reset()
+				player.shieldBubble.active = False
 			player.shieldBubble.update()
 
 		else:
