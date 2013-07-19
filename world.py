@@ -17,7 +17,7 @@ class World:
 		boss = False
 		if self.bossSafePeriod < 0:
 			bossRoll = randint(1, 100)
-			if bossRoll <= 10:
+			if bossRoll <= 25:
 				boss = True
 
 		healthScaling = 10
