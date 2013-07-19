@@ -1,3 +1,5 @@
+from skill import SimpleBuff
+
 class Entity:
 	def __init__(self, name = "Generic Entity", health = 10, attack = 1, defense = 0):
 		self.name = name
@@ -7,6 +9,8 @@ class Entity:
 		self.defense = defense
 		self.experience = 0
 		self.gold = 0
+		self.hitRate = 75
+		self.shieldBubble = SimpleBuff("Shield Bubble", 5, 8)
 
 	def isAlive(self):
 		return int(self.health) > 0
@@ -52,3 +56,9 @@ class Entity:
 
 	def getGold(self):
 		return self.gold
+
+	def setHitRate(self, hitRate):
+		self.hitRate = hitRate
+
+	def getHitRate(self):
+		return self.hitRate

@@ -1,4 +1,3 @@
-from entity import Entity
 from player import Player
 from world import World
 from random import randint
@@ -15,9 +14,12 @@ def attack(attacker, defender):
 	if chanceRoll(75):
 		attack_value = attacker.getAttack()
 		if chanceRoll(50):
-			attack_value -= defender.getDefense()
+			attack_value = attack_value - defender.getDefense()
 			if attack_value < 0:
 				attack_value = 0
+		if defender.shieldBubble.active:
+			attack_value = 0
+			print "%s's Shield Bubble absorbs all damage." % (defender.name)
 		defender.setHealth(defender.getHealth() - attack_value)
 		print "%s hits %s for %d." % (attacker.name, defender.name, attack_value)
 		sayHp(defender)
@@ -32,7 +34,7 @@ skipInput = False
 
 print ''
 print "Welcome to the most evil dungeon you will ever face %s!" % (player.name)
-print "Please use 'e' to explore, 'a' to attack, 'b' to buy potions, and 'h' to heal."
+print "Please use 'e' to explore, 'a' to attack, 'b' to buy potions, 'sb' to activate your shield bubble, and 'h' to heal."
 print "Should you find this dungeon too...hard, feel free to 'x' to commit suicide and end your eternal damnation on earth \
 and begin your eternal damnation in hell. *cackle*"
 print ''
@@ -121,6 +123,9 @@ while player.isAlive():
 				print "%s got %d EXP and %d gold." % (player.name, enemy.getExperience(), enemy.getGold())
 				sayHp(player)
 				enemy = None
+				player.shieldBubble.reset()
+			player.shieldBubble.update()
+
 		else:
 			print "You can't do that right now."
 		skipInput = False
@@ -153,6 +158,18 @@ while player.isAlive():
 		else:
 			print "You can't shop right now."
 		skipInput = False
+
+	elif command == "shieldbubble" or command == "sb":
+		if player.getState() == Player.STATE_BATTLE:
+			if player.shieldBubble.cooldown == 0:
+				player.shieldBubble.activate()
+				print "%s has activated Shield Bubble." % (player.name)
+			else:
+				print "Shield Bubble is still on cooldown. %d turns left." % (player.shieldBubble.cooldown)
+		else:
+			print "You can't activate your skill outside of battle."
+		skipInput = False
+
 	elif command == "exit" or command == "x":
 		break
 	else:

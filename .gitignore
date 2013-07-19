@@ -1,3 +1,4 @@
 *.pyc
 pyrpg.sublime-project
 pyrpg.sublime-workspace
+.ropeproject
