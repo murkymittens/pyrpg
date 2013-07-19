@@ -31,7 +31,7 @@ class Player(Entity):
 		self.defense = self.defense + int(self.level * defenseScaling)
 		self.experience = remaining_experience
 		Player.EXPERIENCE_TARGET = int(Player.EXPERIENCE_TARGET * 1.25)
-		self.level = self.level + 1
+		self.level = self.level + levels
 
 	def setHealthPotions(self, healthPotions):
 		self.healthPotions = int(healthPotions)
