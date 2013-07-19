@@ -89,7 +89,7 @@ while player.isAlive():
 					player.setHealth(1)
 				print "You were careless and fell into a hole."
 				sayHp(player)
-			elif chanceRoll(5):
+			elif chanceRoll(10):
 				somethingStolen = False
 				if player.getGold() > 0:
 					somethingStolen = True
@@ -100,7 +100,8 @@ while player.isAlive():
 					player.setHealthPotions(player.getHealthPotions() * 0.5)
 
 				if somethingStolen:
-					print "%s's pockets feel lighter. You feel around. You have %d gold and %d health potions. Something's definitely missing..." % (player.name, player.getGold(), player.getHealthPotions())
+					print ("%s's pockets feel lighter. You feel around. You have %d gold and %d health potions. Something's definitely missing..." % 
+						(player.name, player.getGold(), player.getHealthPotions()))
 		else:
 			print "You can't do that right now."
 			skipInput = False
