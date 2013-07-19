@@ -10,13 +10,15 @@ class World:
 		self.player = player
 		self.stepsTaken = 0
 		self.enemy = None
+		self.bossSafePeriod = 10
 
 	def generateMonster(self):
-		bossRoll = randint(1, 100)
-		if bossRoll <= 10:
-			boss = True
-		else:
-			boss = False
+		self.bossSafePeriod = self.bossSafePeriod - 1
+		boss = False
+		if self.bossSafePeriod < 0:
+			bossRoll = randint(1, 100)
+			if bossRoll <= 10:
+				boss = True
 
 		healthScaling = 10
 		attackScaling = 1
