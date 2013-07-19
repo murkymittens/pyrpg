@@ -122,7 +122,7 @@ while player.isAlive():
 	elif command == "buy" or command == "b":
 		if player.getState() == Player.STATE_SHOPPING:
 			healthPotionCost = 5
-			if player.getGold() > healthPotionCost:
+			if player.getGold() >= healthPotionCost:
 				player.setGold(player.getGold() - healthPotionCost)
 				player.setHealthPotions(player.getHealthPotions() + 1)
 				print "%s bought a health potion for %d gold. You now have %d health potions. You have %d gold." % (player.name, healthPotionCost, 
