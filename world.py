@@ -41,8 +41,8 @@ class World:
 		if boss:
 			self.enemy.setMaximumHealth(self.enemy.getMaximumHealth() * 10)
 			self.enemy.setHealth(self.enemy.getMaximumHealth())
-			self.enemy.setAttack(self.enemy.getAttack() * 2.5)
-			self.enemy.setDefense(self.enemy.getDefense() * 1.1)
+			self.enemy.setAttack(self.enemy.getAttack() * 4)
+			self.enemy.setDefense(self.enemy.getDefense() * 2)
 			self.enemy.setGold(self.enemy.getGold() * 10)
 			self.enemy.setExperience(self.enemy.getExperience() * 10)
 
