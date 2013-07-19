@@ -148,7 +148,7 @@ while player.isAlive():
 
 	if(player.getExperience() >= Player.EXPERIENCE_TARGET):
 		player.levelUp()
-		print "%s has leveled up!" % (player.name)
+		print "%s has leveled up to %d!" % (player.name, player.getLevel())
 		sayHp(player)
 
 	lastCommand = command

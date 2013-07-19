@@ -4,7 +4,7 @@ class Player(Entity):
 	STATE_EXPLORING = 0
 	STATE_BATTLE = 1
 	STATE_SHOPPING = 2
-	
+
 	EXPERIENCE_TARGET = 100
 
 	def __init__(self, name, health = 10, attack = 1, defense = 0):
@@ -22,13 +22,13 @@ class Player(Entity):
 	def levelUp(self):
 		levels = self.experience / Player.EXPERIENCE_TARGET
 		remaining_experience = self.experience - levels * Player.EXPERIENCE_TARGET
-		healthScaling = 10
+		healthScaling = 5
 		attackScaling = 1
 		defenseScaling = 0.5
-		self.maximumHealth = self.maximumHealth + int(levels * healthScaling)
+		self.maximumHealth = self.maximumHealth + int(self.level * healthScaling)
 		self.health = self.maximumHealth
-		self.attack = self.attack + int(levels * attackScaling)
-		self.defense = self.defense + int(levels * defenseScaling)
+		self.attack = self.attack + int(self.level * attackScaling)
+		self.defense = self.defense + int(self.level * defenseScaling)
 		self.experience = remaining_experience
 		Player.EXPERIENCE_TARGET = int(Player.EXPERIENCE_TARGET * 1.25)
 		self.level = self.level + 1
