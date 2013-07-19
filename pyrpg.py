@@ -75,7 +75,7 @@ while player.isAlive():
 					player.setExperience(player.getExperience() + gain)
 					print "%s got %d EXP." % (player.name, gain)
 				else:
-					player.setGold(player.getGold + gain)
+					player.setGold(player.getGold() + gain)
 					print "%s got %d gold." % (player.name, gain)
 			elif chanceRoll(10):
 				player.setState(Player.STATE_SHOPPING)
