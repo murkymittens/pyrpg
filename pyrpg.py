@@ -68,9 +68,15 @@ while player.isAlive():
 				player.setHealthPotions(player.getHealthPotions() + 1)
 				print "You found a health potion! You now have %d health potions." % (player.getHealthPotions())
 			elif chanceRoll(10):
-				experienceGain = randint(5, 50)
-				player.setExperience(player.getExperience() + experienceGain)
-				print "%s found an ancient artifact. Got %d EXP." % (player.name, experienceGain)
+				gain = randint(5, 50)
+				rewardTypeRoll = randint(1, 100)
+				print "%s found an ancient artifact." % (player.name)
+				if rewardTypeRoll <= 50:
+					player.setExperience(player.getExperience() + gain)
+					print "%s got %d EXP." % (player.name, gain)
+				else:
+					player.setGold(player.getGold + gain)
+					print "%s got %d gold." % (player.name, gain)
 			elif chanceRoll(10):
 				player.setState(Player.STATE_SHOPPING)
 				print "%s stumbled into a rickety shack. There appear to be items for sale. You have %d gold." % (player.name, player.getGold())
@@ -96,7 +102,7 @@ while player.isAlive():
 				print "%s has vanquished the %s. Prepare your anus for the spoils of victory!" % (player.name, enemy.name)
 				player.setHealth(player.getHealth() + 10)
 				player.setExperience(player.getExperience() + enemy.getExperience())
-				player.setGold(enemy.getGold())
+				player.setGold(player.getGold() + enemy.getGold())
 				print "%s got %d EXP and %d gold." % (player.name, enemy.getExperience(), enemy.getGold())
 				sayHp(player)
 				enemy = None
