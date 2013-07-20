@@ -42,7 +42,7 @@ class World:
 			self.enemy.setMaximumHealth(self.enemy.getMaximumHealth() * 10)
 			self.enemy.setHealth(self.enemy.getMaximumHealth())
 			self.enemy.setAttack(self.enemy.getAttack() * 4)
-			self.enemy.setDefense(self.enemy.getDefense() * 2)
+			self.enemy.setDefense(self.enemy.getDefense() * 1.5)
 			self.enemy.setGold(self.enemy.getGold() * 10)
 			self.enemy.setExperience(self.enemy.getExperience() * 10)
 
