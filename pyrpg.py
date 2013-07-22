@@ -191,6 +191,8 @@ while player.isAlive():
 					enemy = None
 				else:
 					print "The gold coins bounce off %s's body and clink to the ground. %s seems unimpressed." % (enemy.name, enemy.name)
+			else:
+				print "Sadly, %s has no gold to negotiate with..." % (player.name)
 		else:
 			print "What are you trying to negotiate with?"
 
