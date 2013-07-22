@@ -50,7 +50,9 @@ while player.isAlive():
 		rawCommand = raw_input("What do you want to do? ")
 		splitCommand = rawCommand.split(' ', 1)
 		command = splitCommand[0]
-		skipInput = True
+		# skipInput = True
+	else:
+		skipInput = False
 
 	if len(command) == 0 and lastCommand != None:
 		command = lastCommand
@@ -73,11 +75,13 @@ while player.isAlive():
 				enemy = world.getEnemy()
 				player.setState(Player.STATE_BATTLE)
 				print "You've encountered a %s. Prepare to fight." % (world.getEnemy().name)
-				skipInput = False
+				# skipInput = False
 			elif chanceRoll(20):
+				skipInput = True
 				player.setHealthPotions(player.getHealthPotions() + 1)
 				print "You found a health potion! You now have %d health potions." % (player.getHealthPotions())
 			elif chanceRoll(10):
+				skipInput = True
 				gain = randint(5, 50)
 				rewardTypeRoll = randint(1, 100)
 				print "%s found an ancient artifact." % (player.name)
@@ -90,14 +94,16 @@ while player.isAlive():
 			elif chanceRoll(10):
 				player.setState(Player.STATE_SHOPPING)
 				print "%s stumbled into a rickety shack. There appear to be items for sale. You have %d gold." % (player.name, player.getGold())
-				skipInput = False
+				# skipInput = False
 			elif chanceRoll(5):
+				skipInput = True
 				player.setHealth(player.getHealth() * 0.25)
 				if player.getHealth() < 1:
 					player.setHealth(1)
 				print "You were careless and fell into a hole."
 				sayHp(player)
 			elif chanceRoll(5):
+				skipInput = True
 				somethingStolen = False
 				if player.getGold() > 0:
 					somethingStolen = True
@@ -110,9 +116,11 @@ while player.isAlive():
 				if somethingStolen:
 					print ("%s's pockets feel lighter. You feel around. You have %d gold and %d health potions. Something's definitely missing..." % 
 						(player.name, player.getGold(), player.getHealthPotions()))
+			else:
+				skipInput = True
 		else:
 			print "You can't do that right now."
-			skipInput = False
+			# skipInput = False
 	elif command == "attack" or command == "a":
 		if player.getState() == Player.STATE_BATTLE:
 			enemy = world.getEnemy()
@@ -135,7 +143,7 @@ while player.isAlive():
 
 		else:
 			print "You can't do that right now."
-		skipInput = False
+		# skipInput = False
 	elif command == "health" or command == "h":
 		if player.getHealthPotions() > 0:
 			player.setHealth(player.getHealth() + 10)
@@ -144,7 +152,7 @@ while player.isAlive():
 			sayHp(player)
 		else:
 			print "You don't have any more health potions."
-		skipInput = False
+		# skipInput = False
 
 	elif command == "buy" or command == "b":
 		if player.getState() == Player.STATE_SHOPPING:
@@ -167,7 +175,7 @@ while player.isAlive():
 				print "The frail-looking shopkeeper banishes you from the premises with unusual vigor, shouting \"My potions cost %d gold! Begone!\"." % (healthPotionCost)
 		else:
 			print "You can't shop right now."
-		skipInput = False
+		# skipInput = False
 
 	elif command == "shieldbubble" or command == "sb":
 		if player.getState() == Player.STATE_BATTLE:
@@ -178,7 +186,7 @@ while player.isAlive():
 				print "Shield Bubble is still on cooldown. %d turns left." % (player.shieldBubble.cooldown)
 		else:
 			print "You can't activate your skill outside of battle."
-		skipInput = False
+		# skipInput = False
 
 	elif command == "negotiate" or command == "n":
 		if player.getState() == Player.STATE_BATTLE:
@@ -195,18 +203,18 @@ while player.isAlive():
 				print "Sadly, %s has no gold to negotiate with..." % (player.name)
 		else:
 			print "What are you trying to negotiate with?"
-		skipInput = False
+		# skipInput = False
 
 	elif command == "exit" or command == "x":
 		break
 
 	elif command == "?":
 		printCommands()
-		skipInput = False
+		# skipInput = False
 
 	else:
 		print "I don't understand you."
-		skipInput = False
+		# skipInput = False
 
 	if(player.getExperience() >= Player.EXPERIENCE_TARGET):
 		player.levelUp()
