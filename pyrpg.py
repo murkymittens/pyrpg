@@ -195,6 +195,7 @@ while player.isAlive():
 				print "Sadly, %s has no gold to negotiate with..." % (player.name)
 		else:
 			print "What are you trying to negotiate with?"
+		skipInput = False
 
 	elif command == "exit" or command == "x":
 		break
