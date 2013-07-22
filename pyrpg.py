@@ -28,7 +28,7 @@ def attack(attacker, defender):
 		print "%s misses." % (attacker.name)
 
 def printCommands():
-	print "Please use 'e' to explore, 'a' to attack, 'b' to buy potions, 'sb' to activate your shield bubble, 'h' to heal, or 'x' to commit suicide."
+	print "Please use 'e' to explore, 'a' to attack, 'b' to buy potions, 'sb' to activate your shield bubble, 'h' to heal, 'n' to negotiate, or 'x' to commit suicide."
 
 name = raw_input("What is your name? ")
 player = Player(name)
@@ -40,8 +40,8 @@ chance = ChanceBasedEvent()
 
 print ''
 print "Welcome to the most evil dungeon you will ever face %s!" % (player.name)
-print "Please use 'e' to explore, 'a' to attack, 'b' to buy potions, 'sb' to activate your shield bubble, and 'h' to heal."
-print "Should you find this dungeon too...hard, feel free to 'x' to commit suicide and end your eternal damnation on earth \
+printCommands()
+print "Should you find this dungeon too...hard, feel free to commit suicide and end your eternal damnation on earth \
 and begin your eternal damnation in hell. *cackle*"
 print ''
 
@@ -179,6 +179,20 @@ while player.isAlive():
 		else:
 			print "You can't activate your skill outside of battle."
 		skipInput = False
+
+	elif command == "negotiate" or command == "n":
+		if player.getState() == Player.STATE_BATTLE:
+			if player.getGold() > 0:
+				player.setGold(player.getGold() * 0.5)
+				print "%s throws some gold in the general direction of %s and tries to duck out of sight." % (player.name, enemy.name)
+				if chance.attempt(50):
+					print "%s, momentarily distracted by shiny gold coins, loses track of %s and wanders off." % (enemy.name, player.name)
+					player.setState(Player.STATE_EXPLORING)
+					enemy = None
+				else:
+					print "The gold coins bounce off %s's body and clink to the ground. %s seems unimpressed." % (enemy.name, enemy.name)
+		else:
+			print "What are you trying to negotiate with?"
 
 	elif command == "exit" or command == "x":
 		break
