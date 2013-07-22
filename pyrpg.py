@@ -202,6 +202,7 @@ while player.isAlive():
 
 	elif command == "?":
 		printCommands()
+		skipInput = False
 
 	else:
 		print "I don't understand you."
