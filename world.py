@@ -25,15 +25,16 @@ class World:
 		defenseScaling = 0.5
 		goldScaling = 2
 		modifier = self.stepsTaken / 50
-		if boss:
-			monsterClass = "Boss"
+	
+		if modifier >= len(World.MONSTER_CLASSES):
+			monsterClass = World.MONSTER_CLASSES[len(World.MONSTER_CLASSES) - 1]
 		else:
-			if modifier >= len(World.MONSTER_CLASSES):
-				monsterClass = World.MONSTER_CLASSES[len(World.MONSTER_CLASSES) - 1]
-			else:
-				monsterClass = World.MONSTER_CLASSES[modifier]
+			monsterClass = World.MONSTER_CLASSES[modifier]
 
 		monsterName = random.choice(World.MONSTER_NAMES)
+		if boss:
+			monsterName = "Boss " + monsterName
+			
 		self.enemy = Entity(monsterClass + " " + monsterName, 
 			10 + int(healthScaling * modifier), 1 + int(attackScaling * modifier), 0 + int(defenseScaling * modifier))
 		self.enemy.setExperience(self.enemy.getHealth())
